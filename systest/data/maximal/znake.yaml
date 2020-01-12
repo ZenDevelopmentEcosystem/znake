@@ -85,7 +85,7 @@ znake:
             codename: bionic
             image: andni233/debbuilder.u18
             architecture: amd64
-            test_image: pythontest.u18
+            test_image: andni233/pythontest.u18
           - name: u16
             codename: xenial
             image: andni233/debbuilder.u16
@@ -110,7 +110,7 @@ znake:
           - name: local
             image: local
           - name: u16
-            image: pythontest.u16
+            image: andni233/pythontest.u16
         coverage_flags: --with-coverage
         command_pattern: COVERAGE_FILE=.coverage python3 .venv/bin/nosetests {verbose} {coverage_flags} {packages}
         vars:
@@ -120,7 +120,7 @@ znake:
           - name: local
             image: local
           - name: u16
-            image: k2runner.u16
+            image: andni233/k2runner.u16
         coverage_flags: coverage
         command_pattern: mkdir -p build/baseline && echo baseline {coverage_flags} {tests_flags} > build/baseline/baseline.txt
         tests_flags: tests_flags {tests}

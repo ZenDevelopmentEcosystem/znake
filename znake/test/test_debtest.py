@@ -26,7 +26,7 @@ class TestGetNamespace(unittest.TestCase):
 
     def test_get_namespace_with_debtest_target(self):
         config = self._get_mock_config()
-        config.znake.deb.targets.append({'name': 'u18', 'test_image': 'k2runner.u18'})
+        config.znake.deb.targets.append({'name': 'u18', 'test_image': 'andni233/k2runner.u18'})
         namespace = get_namespace(config)
         self.assertEqual(len(namespace.tasks), 3)
         self.assertEqual(len(namespace.collections), 1)

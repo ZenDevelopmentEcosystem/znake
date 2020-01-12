@@ -14,7 +14,7 @@ class TestGetNamespace(unittest.TestCase):
 
     def test_get_namespace_with_systest_target(self):
         config = self._get_mock_config()
-        config.znake.systest.targets.append({'name': 'u18', 'image': 'k2runner.u18'})
+        config.znake.systest.targets.append({'name': 'u18', 'image': 'andni233/k2runner.u18'})
         namespace = get_namespace(config)
         self.assertEqual(len(namespace.tasks), 3)
         self.assertEqual(len(namespace.collections), 1)

@@ -64,12 +64,12 @@ znake:
         codename: xenial
         image: andni233/debbuilder.u16
         architecture: amd64
-        test_image: k2runner.u16
+        test_image: andni233/k2runner.u16
       - name: u18
         codename: bionic
         image: andni233/debbuilder.u18
         architecture: amd64
-        test_image: k2runner.u18
+        test_image: andni233/k2runner.u18
     links: []
     install: []
   debtest:
@@ -94,10 +94,10 @@ znake:
       - name: local
         image: local
       - name: u16
-        image: k2runner.u16
+        image: andni233/k2runner.u16
         intepreter: python3.6
       - name: u18
-        image: k2runner.u18
+        image: andni233/k2runner.u18
     coverage_flags: --coverage-enabled --coverage-config-file .coveragerc --coverage-report {coverage_dir_abs}/.coverage-systest-{image}
     tests_flags: --tests-include-regex {tests}
     command_pattern: zk2 --output-dir {output_dir} --config-file-pattern {config_file} run {coverage_flags} --reports-testng true --exitcode-from-verdict true {packages} {tests_flags} --suite-name systest.{image}
