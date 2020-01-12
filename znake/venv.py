@@ -79,7 +79,7 @@ def create_venv(ctx, target):
     if 'interpreter' in target:
         python = target['interpreter']
     else:
-        python = '/usr/bin/python3.6'
+        python = '/usr/bin/python3'
 
     run(ctx, target['image'], '{python} -m venv .venv'.format(python=python), force_volume=True)
     _write_pip_config(ctx, target)
