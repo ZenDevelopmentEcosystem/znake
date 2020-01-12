@@ -83,9 +83,9 @@ znake:
       - name: local
         image: local
       - name: u16
-        image: pythontest.u16
+        image: andni233/pythontest.u16
       - name: u18
-        image: pythontest.u18
+        image: andni233/pythontest.u18
     coverage_flags: --with-coverage --cover-package {packages} --cover-inclusive --cover-erase --cover-xml --cover-xml-file {coverage_dir_abs}/coverage-{image}.xml
     command_pattern: COVERAGE_FILE={coverage_dir_abs}/.coverage-{image} python3 .venv/bin/nosetests {coverage_flags} {packages}
     vars: {}
