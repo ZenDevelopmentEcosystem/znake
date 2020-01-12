@@ -35,7 +35,7 @@ def sdist(ctx):
         call(
             create_venv,
             target={
-                'image': 'docker.zenterio.lan/pypa/manylinux1_x86_64:latest',
+                'image': 'quay.io/pypa/manylinux1_x86_64:latest',
                 'interpreter': '/opt/python/cp36-cp36m/bin/python3'
             }),
     ])
@@ -58,7 +58,7 @@ def _build_sdist_package(ctx):
 def _build_wheel_package(ctx):
     run(
         ctx,
-        'docker.zenterio.lan/pypa/manylinux1_x86_64:latest',
+        'quay.io/pypa/manylinux1_x86_64:latest',
         _render_build_bdist_package_command(ctx),
         use_venv=True)
 
