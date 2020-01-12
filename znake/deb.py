@@ -10,6 +10,7 @@ neccessary tools pre-installed.
 """
 
 import os
+import urllib.parse
 from textwrap import dedent
 
 from invoke import Collection, call, task
@@ -227,11 +228,13 @@ def _render_rules_file(package, ctx):
         '--upgrade-pip '
         '--preinstall fastentrypoints==0.10 '
         '--builtin-venv '
-        '--index-url http://pip.zenterio.lan/simple '
+        '--index-url {index_url} '
         '--extra-index-url https://pypi.org/simple '
         '--extra-pip-arg --trusted-host '
-        '--extra-pip-arg pip.zenterio.lan '
+        '--extra-pip-arg {trusted_host} '
         '--requirements {requirements_dir}/requirements.txt'.format(
+            index_url=ctx.znake.index_url,
+            trusted_host=urllib.parse.urlparse(ctx.znake.index_url).netloc,
             requirements_dir=ctx.build_dir.requirements_dir))
 
     return render_template(

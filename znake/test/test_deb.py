@@ -180,10 +180,43 @@ class TestRender(unittest.TestCase):
             '--upgrade-pip '
             '--preinstall fastentrypoints==0.10 '
             '--builtin-venv '
-            '--index-url http://pip.zenterio.lan/simple '
+            '--index-url https://pypi.org/simple '
             '--extra-index-url https://pypi.org/simple '
             '--extra-pip-arg --trusted-host '
-            '--extra-pip-arg pip.zenterio.lan '
+            '--extra-pip-arg pypi.org '
+            '--requirements ./build/requirements/requirements.txt')
+
+        expected_result = dedent(
+            """\
+            #!/usr/bin/make -f
+
+            %:
+            \tdh $@ --with python-virtualenv --python /usr/bin/python3.6 --sourcedirectory=my_package
+
+            override_dh_shlibdeps:
+            \tdh_shlibdeps --exclude=numpy --exclude=matplotlib --exclude=pandas --exclude=selenium
+
+            override_dh_strip:
+            \tdh_strip --no-automatic-dbgsym || dh_strip
+
+            override_dh_virtualenv:
+            \t{dh_virtualenv_command}""").format(dh_virtualenv_command=dh_virtualenv_command)
+        self.assertEqual(result, expected_result)
+
+    def test_render_rules_file_with_custom_index_url(self):
+        ctx = self._get_mock_config()
+        ctx.znake.index_url = 'http://my.awesome.pypi.index/simple'
+        result = _render_rules_file('my_package', ctx)
+
+        dh_virtualenv_command = (
+            'dh_virtualenv --python /usr/bin/python3.6 '
+            '--upgrade-pip '
+            '--preinstall fastentrypoints==0.10 '
+            '--builtin-venv '
+            '--index-url http://my.awesome.pypi.index/simple '
+            '--extra-index-url https://pypi.org/simple '
+            '--extra-pip-arg --trusted-host '
+            '--extra-pip-arg my.awesome.pypi.index '
             '--requirements ./build/requirements/requirements.txt')
 
         expected_result = dedent(
@@ -280,6 +313,7 @@ class TestRender(unittest.TestCase):
     def _get_mock_config(self):
         config = Mock()
         config.build_dir = BuildDir()
+        config.znake.index_url = 'https://pypi.org/simple'
         return config
 
 

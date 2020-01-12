@@ -85,18 +85,37 @@ class TestRender(unittest.TestCase):
                     """))
 
     def test_render_write_pip_config_command(self):
-        result = _render_write_pip_config_command()
+        ctx = self._get_mock_config()
+        result = _render_write_pip_config_command(ctx)
         self.assertEqual(
             result,
             dedent(
                 """\
                 cat <<EOF>.venv/pip.conf
                 [global]
-                index-url = http://pip.zenterio.lan/simple
+                index-url = https://pypi.org/simple
                 extra-index-url = https://pypi.org/simple
 
                 [install]
-                trusted-host = pip.zenterio.lan
+                trusted-host = pypi.org
+                EOF
+                """))
+
+    def test_render_write_pip_config_command_with_custom_index_url(self):
+        ctx = self._get_mock_config()
+        ctx.znake.index_url = 'http://my.awesome.pypi.index/simple'
+        result = _render_write_pip_config_command(ctx)
+        self.assertEqual(
+            result,
+            dedent(
+                """\
+                cat <<EOF>.venv/pip.conf
+                [global]
+                index-url = http://my.awesome.pypi.index/simple
+                extra-index-url = https://pypi.org/simple
+
+                [install]
+                trusted-host = my.awesome.pypi.index
                 EOF
                 """))
 
@@ -113,7 +132,28 @@ class TestRender(unittest.TestCase):
             dedent(
                 """\
                 mkdir -p ./build/requirements && cat <<EOF>./build/requirements/requirements.txt
-                --trusted-host pip.zenterio.lan
+                --trusted-host pypi.org
+                a==1
+                b==2
+                c==3
+                EOF
+                """))
+
+    def test_render_write_requirements_file_command_with_custom_index_url(self):
+        ctx = self._get_mock_config()
+        ctx.znake.index_url = 'http://my.awesome.pypi.index/simple'
+        ctx.znake.requirements = [
+            'a==1',
+            'b==2',
+            'c==3',
+        ]
+        result = _render_write_requirements_file_command(ctx)
+        self.assertEqual(
+            result,
+            dedent(
+                """\
+                mkdir -p ./build/requirements && cat <<EOF>./build/requirements/requirements.txt
+                --trusted-host my.awesome.pypi.index
                 a==1
                 b==2
                 c==3
@@ -133,7 +173,28 @@ class TestRender(unittest.TestCase):
             dedent(
                 """\
                 mkdir -p ./build/requirements && cat <<EOF>./build/requirements/requirements-dev.txt
-                --trusted-host pip.zenterio.lan
+                --trusted-host pypi.org
+                a==1
+                b==2
+                c==3
+                EOF
+                """))
+
+    def test_render_write_requirements_dev_file_command_with_custom_index_url(self):
+        ctx = self._get_mock_config()
+        ctx.znake.index_url = 'http://my.awesome.pypi.index/simple'
+        ctx.znake.requirements_dev = [
+            'a==1',
+            'b==2',
+            'c==3',
+        ]
+        result = _render_write_requirements_dev_file_command(ctx)
+        self.assertEqual(
+            result,
+            dedent(
+                """\
+                mkdir -p ./build/requirements && cat <<EOF>./build/requirements/requirements-dev.txt
+                --trusted-host my.awesome.pypi.index
                 a==1
                 b==2
                 c==3
@@ -143,6 +204,7 @@ class TestRender(unittest.TestCase):
     def _get_mock_config(self):
         config = Mock()
         config.build_dir = BuildDir()
+        config.znake.index_url = 'https://pypi.org/simple'
         return config
 
 

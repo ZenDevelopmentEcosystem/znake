@@ -16,6 +16,7 @@ znake:
       - 'example.*'
   package_data: []
   requirements: []
+  index_url: https://pypi.org/simple
   requirements_dev:
   - coverage==4.5.1
   - nose==1.3.7

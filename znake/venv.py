@@ -8,6 +8,7 @@ will not be included when packaging the project.
 """
 import datetime
 import os
+import urllib.parse
 from textwrap import dedent
 
 from invoke import Collection, call, task
@@ -188,24 +189,27 @@ def remove_version_file(ctx):
         pass
 
 
-def _render_write_pip_config_command():
+def _render_write_pip_config_command(ctx):
     return (
         'cat <<EOF>.venv/pip.conf\n'
         '[global]\n'
-        'index-url = http://pip.zenterio.lan/simple\n'
+        'index-url = {index_url}\n'
         'extra-index-url = https://pypi.org/simple\n'
         '\n'
         '[install]\n'
-        'trusted-host = pip.zenterio.lan\n'
-        'EOF\n')
+        'trusted-host = {trusted_host}\n'
+        'EOF\n').format(
+            index_url=ctx.znake.index_url,
+            trusted_host=urllib.parse.urlparse(ctx.znake.index_url).netloc)
 
 
 def _render_write_requirements_file_command(ctx):
     return (
         'mkdir -p {requirements_dir} && cat <<EOF>{requirements_dir}/requirements.txt\n'
-        '--trusted-host pip.zenterio.lan\n'
+        '--trusted-host {trusted_host}\n'
         '{requirements}\n'
         'EOF\n').format(
+            trusted_host=urllib.parse.urlparse(ctx.znake.index_url).netloc,
             requirements_dir=ctx.build_dir.requirements_dir,
             requirements='\n'.join(ctx.znake.requirements))
 
@@ -213,15 +217,16 @@ def _render_write_requirements_file_command(ctx):
 def _render_write_requirements_dev_file_command(ctx):
     return (
         'mkdir -p {requirements_dir} && cat <<EOF>{requirements_dir}/requirements-dev.txt\n'
-        '--trusted-host pip.zenterio.lan\n'
+        '--trusted-host {trusted_host}\n'
         '{requirements}\n'
         'EOF\n').format(
+            trusted_host=urllib.parse.urlparse(ctx.znake.index_url).netloc,
             requirements_dir=ctx.build_dir.requirements_dir,
             requirements='\n'.join(ctx.znake.requirements_dev))
 
 
 def _write_pip_config(ctx, target):
-    run(ctx, target['image'], _render_write_pip_config_command(), force_volume=True)
+    run(ctx, target['image'], _render_write_pip_config_command(ctx), force_volume=True)
 
 
 def get_namespace(config):
