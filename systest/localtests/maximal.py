@@ -22,5 +22,4 @@ def test_pypi(znake):
 
 @requires(znake='ZnakeMaximal')
 def test_test_for_targets(znake):
-    znake('test.u14', expected_exit_code=1)
     znake('test.u16')

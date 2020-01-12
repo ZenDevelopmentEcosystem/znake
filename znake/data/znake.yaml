@@ -60,11 +60,6 @@ znake:
     doc: []
     include: []
     targets:
-      - name: u14
-        codename: trusty
-        image: debbuilder.u14
-        architecture: amd64
-        test_image: k2runner.u14
       - name: u16
         codename: xenial
         image: debbuilder.u16
@@ -87,12 +82,8 @@ znake:
     targets:
       - name: local
         image: local
-      - name: u14
-        image: pythontest.u14
-        intepreter: python3.6
       - name: u16
         image: pythontest.u16
-        intepreter: python3.6
       - name: u18
         image: pythontest.u18
     coverage_flags: --with-coverage --cover-package {packages} --cover-inclusive --cover-erase --cover-xml --cover-xml-file {coverage_dir_abs}/coverage-{image}.xml
@@ -102,9 +93,6 @@ znake:
     targets:
       - name: local
         image: local
-      - name: u14
-        image: k2runner.u14
-        intepreter: python3.6
       - name: u16
         image: k2runner.u16
         intepreter: python3.6

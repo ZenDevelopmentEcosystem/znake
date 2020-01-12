@@ -329,9 +329,9 @@ class TestGetNamespace(unittest.TestCase):
         config = self._get_mock_config()
         config.znake.deb.targets.append(
             {
-                'name': 'u14',
+                'name': 'u18',
                 'architecture': 'amd64',
-                'image': 'debbuilder.u14',
+                'image': 'debbuilder.u18',
                 'codename': 'trusty'
             })
         namespace = get_namespace(config)
@@ -342,9 +342,9 @@ class TestGetNamespace(unittest.TestCase):
         config = self._get_mock_config()
         config.znake.deb.targets.append(
             {
-                'name': 'u14',
+                'name': 'u18',
                 'architecture': 'amd64',
-                'image': 'debbuilder.u14',
+                'image': 'debbuilder.u18',
                 'codename': 'trusty'
             })
         config.znake.deb.targets.append(
