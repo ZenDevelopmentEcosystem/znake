@@ -17,6 +17,7 @@ znake:
   package_data: []
   requirements: []
   index_url: https://pypi.org/simple
+  docker_registry: False
   requirements_dev:
   - coverage==4.5.1
   - nose==1.3.7

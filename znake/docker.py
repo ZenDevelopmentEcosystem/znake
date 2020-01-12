@@ -1,8 +1,8 @@
 """
 Docker is used to allow testing and packaging Python projects in multiple environments.
 
-Docker images are pulled from the Zenterio Docker registry (docker.zenterio.lan) and Znake
-provides facilities for running tasks inside these containers.
+Docker images are pulled from the a Docker registry and Znake provides facilities for
+running tasks inside these containers.
 
 .. autofunction:: docker_run
 
@@ -18,21 +18,17 @@ from invoke import Collection
 from invoke.exceptions import UnexpectedExit
 
 
-def docker_run(
-        ctx,
-        image,
-        command,
-        registry='docker.zenterio.lan/zenterio',
-        interactive=False,
-        use_volume=True):
+def docker_run(ctx, image, command, registry=None, interactive=False, use_volume=True):
     """
     Run a command in the target Docker environment.
 
     The specified image is pulled from the registry and
     """
-    if image.startswith('docker.zenterio.lan'):
-        full_image_name = image
-    else:
+    if ctx.znake.docker_registry:
+        registry = ctx.znake.docker_registry
+
+    full_image_name = image
+    if registry and not image.startswith(registry):
         full_image_name = '/'.join([registry, image])
 
     docker_run_flags = ' '.join(ctx.znake.docker.run.flags)
@@ -44,6 +40,8 @@ def docker_run(
 
     if interactive:
         docker_run_flags += ' -it'
+
+    docker_run_flags = docker_run_flags.strip()
 
     if ctx.core.args['no-pull'].value is False:
         _docker_pull(ctx, full_image_name)
@@ -96,7 +94,7 @@ def _fixup_venv_volume_permissions(ctx, flags, image, volume_name):
         return _docker_run(
             ctx,
             '--mount type=volume,source=$(echo ${VENV_VOLUME_NAME}),target=$(pwd)/.venv --rm',
-            'docker.zenterio.lan/ubuntu:16.04',
+            'ubuntu:16.04',
             'chown {uid_and_gid} \"$(pwd)/.venv\"'.format(uid_and_gid=uid_and_gid))
 
 
