@@ -331,7 +331,7 @@ class TestGetNamespace(unittest.TestCase):
             {
                 'name': 'u18',
                 'architecture': 'amd64',
-                'image': 'debbuilder.u18',
+                'image': 'andni233/debbuilder.u18',
                 'codename': 'trusty'
             })
         namespace = get_namespace(config)
@@ -344,14 +344,14 @@ class TestGetNamespace(unittest.TestCase):
             {
                 'name': 'u18',
                 'architecture': 'amd64',
-                'image': 'debbuilder.u18',
+                'image': 'andni233/debbuilder.u18',
                 'codename': 'trusty'
             })
         config.znake.deb.targets.append(
             {
                 'name': 'u16',
                 'architecture': 'amd64',
-                'image': 'debbuilder.u16',
+                'image': 'andni233/debbuilder.u16',
                 'codename': 'xenial',
             })
         namespace = get_namespace(config)

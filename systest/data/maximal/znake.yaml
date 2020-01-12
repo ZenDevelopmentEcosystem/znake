@@ -83,12 +83,12 @@ znake:
         targets:
           - name: u18
             codename: bionic
-            image: debbuilder.u18
+            image: andni233/debbuilder.u18
             architecture: amd64
             test_image: pythontest.u18
           - name: u16
             codename: xenial
-            image: debbuilder.u16
+            image: andni233/debbuilder.u16
             architecture: amd64
         links:
           - link: /usr/bin/a_script

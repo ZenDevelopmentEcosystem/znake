@@ -208,7 +208,7 @@ def _render_rules_file(package, ctx):
         #!/usr/bin/make -f
 
         %:
-        \tdh $@ --with python-virtualenv --python /usr/bin/python3.6 --sourcedirectory={{package}}
+        \tdh $@ --with python-virtualenv --python /usr/bin/python3 --sourcedirectory={{package}}
 
         override_dh_shlibdeps:
         \tdh_shlibdeps --exclude=numpy --exclude=matplotlib --exclude=pandas --exclude=selenium
@@ -224,7 +224,7 @@ def _render_rules_file(package, ctx):
     # compaining about formatting instead, wanting to put the noqa comment on
     # its own line.
     dh_virtualenv_command = (
-        'dh_virtualenv --python /usr/bin/python3.6 '
+        'dh_virtualenv --python /usr/bin/python3 '
         '--upgrade-pip '
         '--preinstall fastentrypoints==0.10 '
         '--builtin-venv '
@@ -266,6 +266,8 @@ def _render_triggers_file(ctx):
         interest-noawait /usr/bin/python3.4
         interest-noawait /usr/bin/python3.5
         interest-noawait /usr/bin/python3.6
+        interest-noawait /usr/bin/python3.7
+        interest-noawait /usr/bin/python3.8
 
         # Also provide a symbolic trigger for all dh-virtualenv packages
         interest dh-virtualenv-interpreter-update

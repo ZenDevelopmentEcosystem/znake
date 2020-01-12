@@ -62,12 +62,12 @@ znake:
     targets:
       - name: u16
         codename: xenial
-        image: debbuilder.u16
+        image: andni233/debbuilder.u16
         architecture: amd64
         test_image: k2runner.u16
       - name: u18
         codename: bionic
-        image: debbuilder.u18
+        image: andni233/debbuilder.u18
         architecture: amd64
         test_image: k2runner.u18
     links: []
