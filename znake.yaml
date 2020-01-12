@@ -1,12 +1,11 @@
 znake:
   info:
     package: znake
-    maintainer: Engineering Services
-    maintainer_email: engineering-services@zenterio.com
+    maintainer: Andreas Nilsson
+    maintainer_email: andni233@gmail.com
     short_description: Build system for Python projects.
     long_description: |
-      Znake is Zenterios build system for Python projects.
-      The goal is to standardize the way of working in different projects.
+      Znake is a build system for Python projects.
     changelog:
       - version: 1.0.0
         changes:
@@ -18,8 +17,6 @@ znake:
     - 'Intended Audience :: Developers'
     - 'Topic :: Software Development :: Build Tools'
     - 'License :: OSI Approved :: Apache Software License'
-    - 'Programming Language :: Python :: 3.4'
-    - 'Programming Language :: Python :: 3.5'
     - 'Programming Language :: Python :: 3.6'
     - 'Programming Language :: Python :: 3.7'
     - 'Programming Language :: Python :: 3.8'
