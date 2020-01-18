@@ -176,7 +176,7 @@ class TestRender(unittest.TestCase):
         result = _render_rules_file('my_package', ctx)
 
         dh_virtualenv_command = (
-            'dh_virtualenv --python /usr/bin/python3.6 '
+            'dh_virtualenv --python /usr/bin/python3 '
             '--upgrade-pip '
             '--preinstall fastentrypoints==0.10 '
             '--builtin-venv '
@@ -191,7 +191,7 @@ class TestRender(unittest.TestCase):
             #!/usr/bin/make -f
 
             %:
-            \tdh $@ --with python-virtualenv --python /usr/bin/python3.6 --sourcedirectory=my_package
+            \tdh $@ --with python-virtualenv --python /usr/bin/python3 --sourcedirectory=my_package
 
             override_dh_shlibdeps:
             \tdh_shlibdeps --exclude=numpy --exclude=matplotlib --exclude=pandas --exclude=selenium
@@ -209,7 +209,7 @@ class TestRender(unittest.TestCase):
         result = _render_rules_file('my_package', ctx)
 
         dh_virtualenv_command = (
-            'dh_virtualenv --python /usr/bin/python3.6 '
+            'dh_virtualenv --python /usr/bin/python3 '
             '--upgrade-pip '
             '--preinstall fastentrypoints==0.10 '
             '--builtin-venv '
@@ -224,7 +224,7 @@ class TestRender(unittest.TestCase):
             #!/usr/bin/make -f
 
             %:
-            \tdh $@ --with python-virtualenv --python /usr/bin/python3.6 --sourcedirectory=my_package
+            \tdh $@ --with python-virtualenv --python /usr/bin/python3 --sourcedirectory=my_package
 
             override_dh_shlibdeps:
             \tdh_shlibdeps --exclude=numpy --exclude=matplotlib --exclude=pandas --exclude=selenium
