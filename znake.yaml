@@ -64,16 +64,14 @@ znake:
     targets:
       - guide: user_guide
   deb:
-    package: zenterio-znake
-    dependencies:
-      - zenterio-zet-reporter
+    package: znake
     doc:
       - user_guide
     links:
-      - target: /opt/venvs/zenterio-znake/bin/znake
+      - target: /opt/venvs/znake/bin/znake
         link: /usr/bin/znake
     include:
-      - source: znaketools/zenterio-znake-bash-completion.sh
+      - source: znaketools/znake-bash-completion.sh
         target: /etc/bash_completion.d/
   test:
     packages:
