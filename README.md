@@ -10,6 +10,7 @@ Works:
 
 * znake clean*
 * znake deb*
+* znake doc
 * znake format
 * znake pypi*
 * znake static
@@ -19,6 +20,5 @@ Works:
 Unknown/Broken:
 
 * znake check*
-* znake doc (Kind of works. PDF generation requires texlive on the host system, tested with textlive-full and texlive-latexextra on Arch Linux. Resulting PDF contains a lot of extra blank pages, unclear why.)
 * znake debtest*
 * znake systest* (Runs, some tests are failing)
