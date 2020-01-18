@@ -1,7 +1,7 @@
 """
 Znake provides facilities for generating documentation.
 
-Sphinx is used to generate both HTML and PDF versions of the documentation.
+By default, Sphinx is used to generate both HTML and PDF versions of the documentation.
 The generated documentation is available in the doc/build directory.
 """
 from invoke import Collection, call, task
@@ -9,9 +9,7 @@ from invoke import Collection, call, task
 from znake.util import znake_tool_path
 
 from .util import run, skip_if_up_to_date
-from .venv import create, create_venv
-
-_DOCBUILDER_TARGET = {'image': 'andni233/docbuilder.u18'}
+from .venv import create
 
 
 @task(default=True)
@@ -35,14 +33,14 @@ def doc_pre_commands(ctx):
 
 def generate_doc_tasks(target):
 
-    @task(pre=[create, doc_pre_commands, call(create_venv, target=_DOCBUILDER_TARGET)])
+    @task(pre=[create, doc_pre_commands])
     @skip_if_up_to_date(
         '{doc_dir}/{target}/html'.format(doc_dir='{doc_dir}', target=target['guide']))
     def html(ctx, target=target):
         """Generate HTML documentation."""
         run(
             ctx,
-            _DOCBUILDER_TARGET['image'],
+            'local',
             _render_generate_documentation_command(
                 target['guide'], ctx, ctx.znake.doc.html_command_pattern),
             use_venv=True)
@@ -52,14 +50,14 @@ def generate_doc_tasks(target):
         """Remove generated HTML documentation."""
         ctx.run(_render_remove_html_documentation_command(target['guide'], ctx))
 
-    @task(pre=[create, doc_pre_commands, call(create_venv, target=_DOCBUILDER_TARGET)])
+    @task(pre=[create, doc_pre_commands])
     @skip_if_up_to_date(
         '{doc_dir}/{target}/pdf'.format(doc_dir='{doc_dir}', target=target['guide']))
     def pdf(ctx, target=target):
         """Generate PDF documentation."""
         run(
             ctx,
-            _DOCBUILDER_TARGET['image'],
+            'local',
             _render_generate_documentation_command(
                 target['guide'], ctx, ctx.znake.doc.pdf_command_pattern),
             use_venv=True)
