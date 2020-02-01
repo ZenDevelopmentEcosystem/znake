@@ -4,7 +4,6 @@ from zaf.component.decorator import requires
 @requires(znake='ZnakeMinimal')
 def test_debtest(znake):
     znake('debtest')
-    znake.workspace.assert_file_exists('build/dist/trusty/zenterio-zminimal_0.1.1+0+trusty_amd64.deb')
     znake.workspace.assert_file_exists('build/dist/xenial/zenterio-zminimal_0.1.1+0+xenial_amd64.deb')
     znake.workspace.assert_file_exists('build/dist/bionic/zenterio-zminimal_0.1.1+0+bionic_amd64.deb')
 
@@ -12,8 +11,8 @@ def test_debtest(znake):
 @requires(znake='ZnakeMinimal')
 def test_pypi(znake):
     znake('pypi')
-    znake.workspace.assert_file_exists('build/pypi/sdist/zenterio-zminimal-0.1.1+0.tar.gz')
-    znake.workspace.assert_file_exists('build/pypi/wheel/zenterio_zminimal-0.1.1+0-py3-none-any.whl')
+    znake.workspace.assert_file_exists('build/pypi/sdist/zenterio-zminimal-0.1.1.post0.tar.gz')
+    znake.workspace.assert_file_exists('build/pypi/wheel/zenterio_zminimal-0.1.1.post0-py3-none-any.whl')
 
 
 @requires(znake='ZnakeMinimal')

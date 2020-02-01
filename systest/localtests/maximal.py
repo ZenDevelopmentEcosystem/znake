@@ -16,8 +16,8 @@ def test_debtest_does_not_exist_for_target_without_test_image(znake):
 @requires(znake='ZnakeMaximal')
 def test_pypi(znake):
     znake('pypi')
-    znake.workspace.assert_file_exists('build/pypi/sdist/zenterio-zmaximal-3.14.15+0.tar.gz')
-    znake.workspace.assert_file_exists('build/pypi/wheel/zenterio_zmaximal-3.14.15+0-py3-none-any.whl')
+    znake.workspace.assert_file_exists('build/pypi/sdist/zenterio-zmaximal-3.14.15.post0.tar.gz')
+    znake.workspace.assert_file_exists('build/pypi/wheel/zenterio_zmaximal-3.14.15.post0-py3-none-any.whl')
 
 
 @requires(znake='ZnakeMaximal')
