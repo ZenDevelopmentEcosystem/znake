@@ -1,5 +1,5 @@
 coloredlogs==10.0
-fastentrypoints==0.10
-glob2==0.6
-invoke==0.22.1
-jinja2==2.9.6
+fastentrypoints==0.12
+glob2==0.7
+invoke==1.4.1
+jinja2==2.11.1

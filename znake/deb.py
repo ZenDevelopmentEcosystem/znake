@@ -61,8 +61,8 @@ def create_deb(ctx, target):
     """Build a Debian package."""
     skip_if_up_to_date(
         '{dist_dir}/{codename}'.format(
-            dist_dir=ctx.build_dir.dist_dir, codename=target['codename']))(_build_debian_package)(
-                ctx, target)
+            dist_dir=ctx.build_dir.dist_dir,
+            codename=target['codename']))(_build_debian_package)(ctx, target)
 
 
 def generate_debian_packaging_tasks(target):
@@ -249,8 +249,8 @@ def _write_rules_file(ctx):
 def _render_write_source_options_file_command(ctx):
     return (
         'mkdir {debian_dir}/source && '
-        'echo \'tar-ignore = "*"\' > {debian_dir}/source/options'
-    ).format(debian_dir=ctx.build_dir.debian_dir)
+        'echo \'tar-ignore = "*"\' > {debian_dir}/source/options').format(
+            debian_dir=ctx.build_dir.debian_dir)
 
 
 def _write_source_options_file(ctx):

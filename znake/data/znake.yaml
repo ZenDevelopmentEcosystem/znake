@@ -19,10 +19,10 @@ znake:
   index_url: https://pypi.org/simple
   docker_registry: False
   requirements_dev:
-  - coverage==4.5.1
+  - fastentrypoints==0.12
   - nose==1.3.7
-  - fastentrypoints==0.10
-  - wheel==0.31.1
+  - coverage==5.0.3
+  - wheel==0.34.2
   static:
     flake8:
       flags:

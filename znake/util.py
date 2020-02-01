@@ -88,7 +88,8 @@ def skip_if_up_to_date(target_pattern):
             config_target = None
             if 'target' in kwargs:
                 config_target = kwargs['target']
-            check_in_docker = config_target and 'image' in config_target and config_target['image'] != 'local'
+            check_in_docker = config_target and 'image' in config_target and config_target[
+                'image'] != 'local'
             targets = _get_targets(check_in_docker, config_target, ctx)
 
             if not targets:
@@ -208,12 +209,12 @@ class ZnakeConfig(Config):
     prefix = 'znake'
 
     def __init__(
-            self,
-            overrides=None,
-            defaults=None,
-            project_location=None,
-            runtime_path=None,
-            lazy=False,
+        self,
+        overrides=None,
+        defaults=None,
+        project_location=None,
+        runtime_path=None,
+        lazy=False,
     ):
         super().__init__(
             overrides=overrides,

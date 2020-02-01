@@ -92,10 +92,8 @@ def _fixup_venv_volume_permissions(ctx, flags, image, volume_name):
     uid_and_gid = ctx.run('echo "$(id -u):$(id -g)"').stdout.strip()
     with ctx.prefix('export VENV_VOLUME_NAME={volume_name} '.format(volume_name=volume_name)):
         return _docker_run(
-            ctx,
-            '--mount type=volume,source=$(echo ${VENV_VOLUME_NAME}),target=$(pwd)/.venv --rm',
-            'ubuntu:16.04',
-            'chown {uid_and_gid} \"$(pwd)/.venv\"'.format(uid_and_gid=uid_and_gid))
+            ctx, '--mount type=volume,source=$(echo ${VENV_VOLUME_NAME}),target=$(pwd)/.venv --rm',
+            'ubuntu:16.04', 'chown {uid_and_gid} \"$(pwd)/.venv\"'.format(uid_and_gid=uid_and_gid))
 
 
 def _docker_pull(ctx, image, seen_images=[]):

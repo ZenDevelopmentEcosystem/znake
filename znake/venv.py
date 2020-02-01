@@ -86,7 +86,7 @@ def create_venv(ctx, target):
     _write_pip_config(ctx, target)
 
     run(ctx, target['image'], '.venv/bin/pip3 install --upgrade setuptools', use_venv=True)
-    run(ctx, target['image'], '.venv/bin/pip3 install pip==19.0.3', use_venv=True)
+    run(ctx, target['image'], '.venv/bin/pip3 install --upgrade pip', use_venv=True)
     run(
         ctx,
         target['image'],
@@ -235,7 +235,7 @@ def get_namespace(config):
         generate_venv_tasks(target)
     for target in config.znake.systest.targets:
         generate_venv_tasks(target)
-    generate_venv_tasks({'image': 'docker.zenterio.lan/pypa/manylinux1_x86_64:latest'})
+    generate_venv_tasks({'image': 'quay.io/pypa/manylinux1_x86_64:latest'})
 
     namespace.add_task(create)
     namespace.add_task(cleanup)
