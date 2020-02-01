@@ -34,6 +34,7 @@ def generate_debtest_tasks(target):
         run(
             ctx, target['test_image'], (
                 'sudo apt-get update && '
+                'sudo rm /var/lib/dpkg/statoverride && sudo touch /var/lib/dpkg/statoverride && '
                 '{install_dependencies_command}'
                 'sudo DEBIAN_FRONTEND=noninteractive gdebi --quiet --non-interactive '
                 '$(ls -t {dist_dir}/{codename}/*.deb | head -1) && '
