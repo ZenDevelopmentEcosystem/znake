@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 RUN \
     apt-get update && \
-    apt-get --yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install locales dpkg-dev debhelper dh-virtualenv python3-venv && \
+    apt-get --yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install locales dpkg-dev debhelper dh-virtualenv python3-venv python3-pip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

@@ -227,6 +227,7 @@ def _render_rules_file(package, ctx):
         'dh_virtualenv --python /usr/bin/python3 '
         '--upgrade-pip '
         '--preinstall fastentrypoints==0.10 '
+        '--preinstall virtualenv==16.1.0 '
         '--builtin-venv '
         '--index-url {index_url} '
         '--extra-index-url https://pypi.org/simple '
