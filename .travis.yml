@@ -8,5 +8,6 @@ install:
   - bash activate
 
 script:
+  - ls -lah *
   - .venv/bin/znake test.u16
   - .venv/bin/znake test.u18
