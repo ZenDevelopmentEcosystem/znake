@@ -3,6 +3,10 @@ language: python
 services:
   - docker
 
+before_install:
+  - sudo apt-get update
+  - sudo apt-get -y install texlive-base texlive-latex-extra
+
 install:
   - bash activate
 
