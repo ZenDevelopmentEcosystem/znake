@@ -1,7 +1,11 @@
-language: generic
+language: python
 
 services:
   - docker
+
+matrix:
+  include:
+    - python: 3.8
 
 install:
   - bash activate
