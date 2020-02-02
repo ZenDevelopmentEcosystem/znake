@@ -4,10 +4,8 @@ services:
   - docker
 
 install:
-  - python -m pip || wget -qO- https://bootstrap.pypa.io/get-pip.py | python3
   - bash activate
 
 script:
-  - ls -lah *
   - .venv/bin/znake test.u16
   - .venv/bin/znake test.u18
