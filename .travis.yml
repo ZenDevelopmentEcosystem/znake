@@ -3,13 +3,9 @@ language: python
 services:
   - docker
 
-matrix:
-  include:
-    - python: 3.8
-
 install:
   - bash activate
 
 script:
-  - .venv/bin/znake test.u16
-  - .venv/bin/znake test.u18
+  - znake test.u16
+  - znake test.u18
