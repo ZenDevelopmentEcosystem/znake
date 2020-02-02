@@ -85,21 +85,21 @@ def create_venv(ctx, target):
     run(ctx, target['image'], '{python} -m venv .venv'.format(python=python), force_volume=True)
     _write_pip_config(ctx, target)
 
-    run(ctx, target['image'], '.venv/bin/pip3 install --upgrade setuptools', use_venv=True)
-    run(ctx, target['image'], '.venv/bin/pip3 install --upgrade pip', use_venv=True)
+    run(ctx, target['image'], 'python3 -m pip install --upgrade setuptools', use_venv=True)
+    run(ctx, target['image'], 'python3 -m pip install --upgrade pip', use_venv=True)
     run(
         ctx,
         target['image'],
-        '.venv/bin/pip3 install -r {requirements_dir}/requirements.txt || true'.format(
+        'python3 -m pip install -r {requirements_dir}/requirements.txt || true'.format(
             requirements_dir=ctx.build_dir.requirements_dir),
         use_venv=True)
     run(
         ctx,
         target['image'],
-        '.venv/bin/pip3 install -r {requirements_dir}/requirements-dev.txt || true'.format(
+        'python3 -m pip install -r {requirements_dir}/requirements-dev.txt || true'.format(
             requirements_dir=ctx.build_dir.requirements_dir),
         use_venv=True)
-    run(ctx, target['image'], '.venv/bin/pip3 install -e .', use_venv=True)
+    run(ctx, target['image'], 'python3 -m pip install -e .', use_venv=True)
 
 
 @task
