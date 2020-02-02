@@ -16,5 +16,3 @@ script:
   - znake test.u18
   - znake systest.u16
   - znake systest.u18
-  - znake debtest.u16
-  - znake debtest.u18

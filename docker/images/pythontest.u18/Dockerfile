@@ -1,8 +1,10 @@
 FROM ubuntu:18.04
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN \
     apt-get update && \
-    apt-get --yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install python3 python3-venv python3-pip locales sudo gdebi && \
+    apt-get --yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install python3 python3-venv python3-pip locales sudo gdebi texlive-base texlive-latex-extra && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

@@ -1,8 +1,10 @@
 FROM ubuntu:16.04
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN \
     apt-get update && \
-    apt-get --yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install sudo locales make python3 python3-venv software-properties-common gdebi && \
+    apt-get --yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install sudo locales make python3 python3-venv software-properties-common gdebi texlive-base texlive-latex-extra && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
