@@ -14,5 +14,3 @@ script:
   - znake static
   - znake test.u16
   - znake test.u18
-  - znake systest.u16
-  - znake systest.u18
