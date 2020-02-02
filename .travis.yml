@@ -1,0 +1,11 @@
+language: python
+
+services:
+  - docker
+
+before_script:
+  - source activate
+
+script:
+  - .venv/bin/znake test.u16
+  - .venv/bin/znake test.u18
