@@ -2,4 +2,4 @@ coloredlogs==10.0
 fastentrypoints==0.12
 glob2==0.7
 invoke==1.4.1
-jinja2==2.11.1
+jinja2==2.11.3
